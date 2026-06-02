@@ -1,0 +1,27 @@
+:root {
+  --logo-text: #263238;
+  --primary-color: #18191F;
+  --secondary-color: #4D4D4D;
+  --least-color: #717171;
+  --btn-color: #4CAF4F;
+  --btn-hover-color: #45a049;
+  --bg-color: #F5F5F5;
+  --box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Inter", sans-serif;
+  color: var(--primary-color);
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}

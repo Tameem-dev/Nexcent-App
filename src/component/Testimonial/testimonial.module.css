@@ -1,0 +1,151 @@
+/* TestimonialSection.module.css */
+
+.testimonialSection {
+  padding: 80px 20px;
+  background-color: #f5f7fb;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.testimonialWrapper {
+  display: flex;
+  align-items: center;
+  gap: 60px;
+  flex-wrap: wrap;
+}
+
+/* Right Side - Avatar Image */
+.testimonialImage {
+  flex: 0.8;
+  min-width: 200px;
+  text-align: center;
+}
+
+.testimonialImage img {
+  width: 100%;
+  max-width: 280px;
+  height: auto;
+  border-radius: 12px;
+}
+
+/* Left Side - Content */
+.testimonialContent {
+  flex: 1.5;
+  min-width: 280px;
+}
+
+.testimonialText {
+  font-size: 16px;
+  color: #666666;
+  line-height: 1.6;
+  margin-bottom: 24px;
+}
+
+/* Author Section */
+.authorSection {
+  margin-bottom: 32px;
+}
+
+.authorName {
+  font-size: 18px;
+  font-weight: 600;
+  color: #4CAF50;
+  margin-bottom: 8px;
+}
+
+.authorTitle {
+  font-size: 14px;
+  color: #666666;
+}
+
+/* Logos Section */
+.logosSection {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.logosGrid {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  flex-wrap: wrap;
+}
+
+.logosGrid img {
+  width: 40px;
+  height: 40px;
+  object-fit: contain;
+}
+
+/* Meet Link */
+.meetLink {
+  color: #4CAF50;
+  text-decoration: none;
+  font-size: 16px;
+  font-weight: 600;
+  transition: color 0.3s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.meetLink:hover {
+  color: #2E7D32;
+}
+
+.meetLink::after {
+  content: '→';
+  transition: transform 0.3s ease;
+}
+
+.meetLink:hover::after {
+  transform: translateX(4px);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .testimonialSection {
+    padding: 50px 16px;
+  }
+
+  .testimonialWrapper {
+    flex-direction: column;
+    text-align: center;
+    gap: 40px;
+  }
+
+  .testimonialText {
+    font-size: 14px;
+  }
+
+  .logosSection {
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .logosGrid {
+    justify-content: center;
+  }
+
+  .authorName {
+    font-size: 16px;
+  }
+}
+
+@media (max-width: 480px) {
+  .logosGrid img {
+    width: 32px;
+    height: 32px;
+  }
+
+  .meetLink {
+    font-size: 14px;
+  }
+}

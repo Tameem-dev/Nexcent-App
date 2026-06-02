@@ -1,0 +1,245 @@
+/* ========== TOP SECTION - CTA (Background #F5F5F5) ========== */
+.ctaSection {
+  background-color: #F5F5F5;
+  padding: 60px 20px;
+  text-align: center;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.ctaTitle {
+  font-size: 32px;
+  font-weight: 700;
+  color: #1a2b4c;
+  margin-bottom: 32px;
+  line-height: 1.2;
+}
+
+.demoBtn {
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  padding: 14px 32px;
+  font-size: 16px;
+  font-weight: 600;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.demoBtn:hover {
+  background-color: #2E7D32;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(76, 175, 80, 0.3);
+}
+
+/* ========== BOTTOM SECTION - Footer (Background #263238) ========== */
+.footerBottomSection {
+  background-color: #263238;
+  padding: 60px 20px 30px;
+}
+
+.footerWrapper {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 40px;
+}
+
+/* Footer Columns */
+.footerColumn {
+  flex: 1;
+  min-width: 160px;
+}
+
+/* Logo with Image */
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 24px;
+}
+
+.logoImage {
+  width: 32px;
+  height: 32px;
+  object-fit: contain;
+}
+
+.logoText {
+  font-size: 24px;
+  font-weight: 700;
+  background: linear-gradient(135deg, #4CAF50, #2E7D32);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* Copyright */
+.copyright {
+  font-size: 14px;
+  color: #b0b8c5;
+  line-height: 1.6;
+  margin-bottom: 24px;
+}
+
+/* Social Icons */
+.socialIcons {
+  display: flex;
+  gap: 16px;
+}
+
+.socialLink {
+  width: 32px;
+  height: 32px;
+  background-color: rgba(255, 255, 255, 0.1);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.3s ease;
+}
+
+.socialLink:hover {
+  background-color: #4CAF50;
+}
+
+.socialLink img {
+  width: 16px;
+  height: 16px;
+  object-fit: contain;
+  filter: brightness(0) invert(1); /* Makes icons white */
+}
+
+/* Footer Titles */
+.footerTitle {
+  font-size: 18px;
+  font-weight: 600;
+  margin-bottom: 24px;
+  color: #ffffff;
+}
+
+/* Footer Links */
+.footerLinks {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.footerLinks li {
+  margin-bottom: 12px;
+}
+
+.footerLinks a {
+  color: #b0b8c5;
+  text-decoration: none;
+  font-size: 14px;
+  transition: color 0.3s ease;
+}
+
+.footerLinks a:hover {
+  color: #4CAF50;
+}
+
+/* Newsletter Form - Send Icon INSIDE input */
+.newsletterForm {
+  position: relative;
+  width: 100%;
+}
+
+.emailInput {
+  width: 100%;
+  padding: 12px 50px 12px 16px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 8px;
+  background-color: rgba(255, 255, 255, 0.1);
+  color: #ffffff;
+  font-size: 14px;
+  outline: none;
+  transition: border-color 0.3s ease;
+}
+
+.emailInput::placeholder {
+  color: #b0b8c5;
+}
+
+.emailInput:focus {
+  border-color: #4CAF50;
+}
+
+.submitBtn {
+  position: absolute;
+  right: 8px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 32px;
+  height: 32px;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+}
+
+.submitBtn:hover {
+  opacity: 0.8;
+}
+
+.sendIcon {
+  width: 20px;
+  height: 20px;
+  object-fit: contain;
+  filter: brightness(0) invert(1); /* Makes icon white */
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .ctaSection {
+    padding: 40px 16px;
+  }
+
+  .ctaTitle {
+    font-size: 28px;
+  }
+
+  .footerBottomSection {
+    padding: 40px 16px 20px;
+  }
+
+  .footerWrapper {
+    flex-direction: column;
+    gap: 30px;
+  }
+
+  .footerColumn {
+    text-align: center;
+  }
+
+  .logo {
+    justify-content: center;
+  }
+
+  .socialIcons {
+    justify-content: center;
+  }
+
+  .emailInput {
+    width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .ctaTitle {
+    font-size: 24px;
+  }
+
+  .demoBtn {
+    padding: 12px 24px;
+    font-size: 14px;
+  }
+}

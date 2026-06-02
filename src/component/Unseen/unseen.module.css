@@ -1,0 +1,110 @@
+.pixelgrade-section {
+  background-color: #ffffff;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.pixelgrade-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 80px;
+  flex-wrap: wrap;
+}
+
+/* Left Side - Image */
+.pixelgrade-image {
+  min-width: 280px;
+}
+
+.pixelgrade-image img {
+  width: 100%;
+  max-width: 400px;
+  height: auto;
+  display: block;
+  margin: 0 auto;
+}
+
+/* Right Side - Content */
+.pixelgrade-content {
+  flex: 1;
+  min-width: 280px;
+}
+
+.pixelgrade-title {
+  font-size: 36px;
+  font-weight: 700;
+  color: #1a2b4c;
+  line-height: 1.2;
+  margin-bottom: 24px;
+}
+
+.pixelgrade-description {
+  font-size: 16px;
+  color: #666666;
+  line-height: 1.6;
+  margin-bottom: 32px;
+}
+
+/* Learn More Button */
+.btn-learn-more {
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  padding: 12px 32px;
+  font-size: 16px;
+  font-weight: 600;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-family: inherit;
+}
+
+.btn-learn-more:hover {
+  background-color: #2E7D32;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(76, 175, 80, 0.3);
+}
+
+.btn-learn-more:active {
+  transform: translateY(0);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .pixelgrade-section {
+    padding: 50px 16px;
+  }
+
+  .pixelgrade-wrapper {
+    flex-direction: column;
+    text-align: center;
+    gap: 40px;
+  }
+
+  .pixelgrade-title {
+    font-size: 28px;
+  }
+
+  .pixelgrade-description {
+    font-size: 14px;
+  }
+
+  .pixelgrade-image img {
+    max-width: 280px;
+  }
+}
+
+@media (max-width: 480px) {
+  .pixelgrade-title {
+    font-size: 24px;
+  }
+
+  .btn-learn-more {
+    padding: 10px 24px;
+    font-size: 14px;
+  }
+}
