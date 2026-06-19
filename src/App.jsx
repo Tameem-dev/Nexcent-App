@@ -1,29 +1,49 @@
-import "./App.css";
-import Insight from "./component/Insights/insight";
-import Navbar from "./component/Navbar/navbar";
-import Client from "./component/Client/client";
-import Community from "./component/Community/community";
-import Unseen from "./component/Unseen/unseen";
-import Helping from "./component/Helping/helping";
-import Design from "./component/Design/design";
-import Testimonial from "./component/Testimonial/testimonial";
-import Marketing from "./component/Marketing/marketing";
-import Footer from "./component/Footer/footer";
+import './App.css';
+import { Routes, Route } from 'react-router-dom';
+import MainLayout from './component/Layout/MainLayout';
+import { 
+  Homepage, 
+  Service, 
+  Feature, 
+  Product, 
+  Testimonial, 
+  FAQ,
+  Login,
+  Signup,
+  Dashboard,
+  Reports,
+  Library,
+  People,
+  Activities,
+  GetStarted,
+  Settings,
+} from './Pages';
 
 function App() {
   return (
-    <>
-      <Navbar />
-      <Insight />
-      <Client />
-      <Community />
-      <Unseen />
-      <Helping />
-      <Design />
-      <Testimonial />
-      <Marketing />
-      <Footer />
-    </>
+    <Routes>
+      {/* Routes WITH Navbar and Footer */}
+      <Route element={<MainLayout />}>
+        <Route path="/" element={<Homepage />} />
+        <Route path="/Home" element={<Homepage />} />
+        <Route path="/Service" element={<Service />} />
+        <Route path="/Feature" element={<Feature />} />
+        <Route path="/Product" element={<Product />} />
+        <Route path="/Testimonial" element={<Testimonial />} />
+        <Route path="/FAQ" element={<FAQ />} />
+      </Route>
+      
+      {/* Dashboard Routes WITHOUT Navbar and Footer */}
+      <Route path="/login" element={<Login />} />
+      <Route path="/signup" element={<Signup />} />
+      <Route path="/dashboard" element={<Dashboard />} />
+      <Route path="/reports" element={<Reports />} />
+      <Route path="/library" element={<Library />} />
+      <Route path="/people" element={<People />} />
+      <Route path="/activities" element={<Activities />} />
+      <Route path="/getStarted" element={<GetStarted />} />
+      <Route path="/settings" element={<Settings />} />
+    </Routes>
   );
 }
 

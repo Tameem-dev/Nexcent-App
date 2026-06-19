@@ -1,22 +1,3 @@
-/* ========== TOP SECTION - CTA (Background #F5F5F5) ========== */
-.ctaSection {
-  background-color: #F5F5F5;
-  padding: 60px 20px;
-  text-align: center;
-}
-
-.container {
-  max-width: 1200px;
-  margin: 0 auto;
-}
-
-.ctaTitle {
-  font-size: 32px;
-  font-weight: 700;
-  color: #1a2b4c;
-  margin-bottom: 32px;
-  line-height: 1.2;
-}
 
 .demoBtn {
   background-color: #4CAF50;

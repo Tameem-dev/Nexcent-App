@@ -1,0 +1,255 @@
+/* ── Service Page ──────────────────────────────────────────── */
+
+.servicePage {
+  width: 100%;
+  overflow-x: hidden;
+  background: var(--bg-color);
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+/* ── Hero Section ──────────────────────────────────────────── */
+
+.heroSection {
+  background: var(--bg-color);
+  padding: 80px 0 60px;
+  text-align: center;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.heroTitle {
+  font-size: clamp(32px, 5vw, 48px);
+  font-weight: 700;
+  color: var(--primary-color);
+  margin-bottom: 16px;
+}
+
+.heroDescription {
+  font-size: clamp(16px, 2vw, 18px);
+  color: var(--secondary-color);
+  max-width: 700px;
+  margin: 0 auto;
+  line-height: 1.6;
+}
+
+/* ── Services Grid ──────────────────────────────────────────── */
+
+.servicesSection {
+  padding: 60px 0;
+  background: var(--bg-color);
+}
+
+.servicesGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 30px;
+}
+
+.serviceCard {
+  background: #ffffff;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  border-radius: 12px;
+  padding: 30px 24px;
+  transition: all 0.3s ease;
+  box-shadow: var(--box-shadow);
+}
+
+.serviceCard:hover {
+  transform: translateY(-5px);
+  border-color: var(--btn-color);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
+}
+
+.serviceIcon {
+  font-size: 40px;
+  margin-bottom: 16px;
+}
+
+.serviceTitle {
+  font-size: 20px;
+  font-weight: 600;
+  color: var(--primary-color);
+  margin-bottom: 12px;
+}
+
+.serviceDescription {
+  font-size: 14px;
+  color: var(--secondary-color);
+  line-height: 1.6;
+  margin-bottom: 16px;
+}
+
+.serviceFeatures {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 20px 0;
+}
+
+.featureItem {
+  font-size: 13px;
+  color: var(--secondary-color);
+  padding: 4px 0;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.checkmark {
+  color: var(--btn-color);
+  font-weight: 600;
+}
+
+.learnMoreBtn {
+  background: transparent;
+  color: var(--btn-color);
+  border: 1px solid var(--btn-color);
+  padding: 8px 20px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+
+.learnMoreBtn:hover {
+  background: var(--btn-color);
+  color: #ffffff;
+}
+
+/* ── Why Choose Us ──────────────────────────────────────────── */
+
+.whyChooseSection {
+  padding: 60px 0;
+  background: #ffffff;
+}
+
+.sectionTitle {
+  font-size: clamp(28px, 4vw, 36px);
+  font-weight: 700;
+  color: var(--primary-color);
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.whyChooseGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 30px;
+}
+
+.whyChooseCard {
+  text-align: center;
+  padding: 30px;
+  background: var(--bg-color);
+  border-radius: 12px;
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  transition: all 0.3s ease;
+}
+
+.whyChooseCard:hover {
+  transform: translateY(-3px);
+  border-color: var(--btn-color);
+  box-shadow: var(--box-shadow);
+}
+
+.whyIcon {
+  font-size: 48px;
+  margin-bottom: 16px;
+}
+
+.whyChooseCard h3 {
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--primary-color);
+  margin-bottom: 10px;
+}
+
+.whyChooseCard p {
+  font-size: 14px;
+  color: var(--secondary-color);
+  line-height: 1.6;
+}
+
+/* ── CTA Section ──────────────────────────────────────────── */
+
+.ctaSection {
+  padding: 60px 0;
+  background: var(--bg-color);
+  text-align: center;
+  border-top: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.ctaTitle {
+  font-size: clamp(28px, 4vw, 36px);
+  font-weight: 700;
+  color: var(--primary-color);
+  margin-bottom: 16px;
+}
+
+.ctaDescription {
+  font-size: 16px;
+  color: var(--secondary-color);
+  max-width: 600px;
+  margin: 0 auto 30px;
+  line-height: 1.6;
+}
+
+.ctaButton {
+  padding: 14px 40px;
+  background: var(--btn-color);
+  color: #ffffff;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.ctaButton:hover {
+  background: var(--btn-hover-color);
+  transform: translateY(-2px);
+  box-shadow: 0 10px 30px rgba(76, 175, 79, 0.3);
+}
+
+/* ── Responsive Design ──────────────────────────────────────────── */
+
+@media (max-width: 768px) {
+  .heroSection {
+    padding: 60px 0 40px;
+  }
+
+  .servicesSection {
+    padding: 40px 0;
+  }
+
+  .servicesGrid {
+    grid-template-columns: 1fr;
+    max-width: 500px;
+    margin: 0 auto;
+  }
+
+  .whyChooseGrid {
+    grid-template-columns: 1fr;
+    max-width: 400px;
+    margin: 0 auto;
+  }
+
+  .ctaSection {
+    padding: 40px 0;
+  }
+}
+
+@media (max-width: 480px) {
+  .heroSection {
+    padding: 40px 0 30px;
+  }
+
+  .serviceCard {
+    padding: 20px;
+  }
+}

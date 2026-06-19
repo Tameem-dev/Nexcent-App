@@ -1,0 +1,377 @@
+/* ── Testimonial Page ──────────────────────────────────────────── */
+
+.testimonialPage {
+  width: 100%;
+  overflow-x: hidden;
+  background: var(--bg-color);
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+/* ── Hero Section ──────────────────────────────────────────── */
+
+.heroSection {
+  background: var(--bg-color);
+  padding: 80px 0 60px;
+  text-align: center;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.heroTitle {
+  font-size: clamp(32px, 5vw, 48px);
+  font-weight: 700;
+  color: var(--primary-color);
+  margin-bottom: 16px;
+}
+
+.heroDescription {
+  font-size: clamp(16px, 2vw, 18px);
+  color: var(--secondary-color);
+  max-width: 700px;
+  margin: 0 auto;
+  line-height: 1.6;
+}
+
+/* ── Stats Section ──────────────────────────────────────────── */
+
+.statsSection {
+  padding: 40px 0;
+  background: #ffffff;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.statsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 30px;
+  text-align: center;
+}
+
+.statCard {
+  padding: 20px;
+}
+
+.statNumber {
+  font-size: clamp(32px, 4vw, 42px);
+  font-weight: 700;
+  color: var(--btn-color);
+  margin-bottom: 8px;
+}
+
+.statLabel {
+  font-size: 16px;
+  color: var(--secondary-color);
+}
+
+/* ── Testimonials Grid ──────────────────────────────────────────── */
+
+.testimonialsSection {
+  padding: 60px 0;
+  background: var(--bg-color);
+}
+
+.testimonialsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: 30px;
+}
+
+.testimonialCard {
+  background: #ffffff;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  border-radius: 12px;
+  padding: 30px;
+  transition: all 0.3s ease;
+  box-shadow: var(--box-shadow);
+}
+
+.testimonialCard:hover {
+  transform: translateY(-5px);
+  border-color: var(--btn-color);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
+}
+
+.testimonialHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 16px;
+}
+
+.clientInfo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.clientImage {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background: var(--bg-color);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 30px;
+}
+
+.clientName {
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--primary-color);
+  margin-bottom: 2px;
+}
+
+.clientRole {
+  font-size: 14px;
+  color: var(--least-color);
+  margin-bottom: 2px;
+}
+
+.clientLocation {
+  font-size: 13px;
+  color: var(--least-color);
+}
+
+.rating {
+  text-align: right;
+}
+
+.stars {
+  font-size: 16px;
+  letter-spacing: 1px;
+  display: block;
+  margin-bottom: 4px;
+}
+
+.ratingNumber {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--secondary-color);
+}
+
+.testimonialText {
+  font-size: 15px;
+  color: var(--secondary-color);
+  line-height: 1.8;
+  margin-bottom: 16px;
+  font-style: italic;
+}
+
+.testimonialDate {
+  font-size: 13px;
+  color: var(--least-color);
+  text-align: right;
+}
+
+/* ── Featured Section ──────────────────────────────────────────── */
+
+.featuredSection {
+  padding: 60px 0;
+  background: #ffffff;
+  border-top: 1px solid rgba(0, 0, 0, 0.05);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.featuredContent {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 60px;
+  align-items: center;
+}
+
+.quoteIcon {
+  font-size: 60px;
+  color: var(--btn-color);
+  opacity: 0.3;
+  display: block;
+  margin-bottom: 16px;
+}
+
+.quoteText {
+  font-size: clamp(18px, 2vw, 24px);
+  color: var(--primary-color);
+  line-height: 1.8;
+  margin-bottom: 24px;
+  font-style: italic;
+}
+
+.quoteAuthor {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.authorImage {
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  background: var(--bg-color);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 35px;
+}
+
+.authorName {
+  font-size: 20px;
+  font-weight: 600;
+  color: var(--primary-color);
+  margin-bottom: 4px;
+}
+
+.authorInfo {
+  font-size: 14px;
+  color: var(--secondary-color);
+}
+
+.featuredStats {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 20px;
+}
+
+.featuredStat {
+  text-align: center;
+  padding: 20px;
+  background: var(--bg-color);
+  border-radius: 12px;
+  border: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.featuredStat h4 {
+  font-size: 28px;
+  font-weight: 700;
+  color: var(--btn-color);
+  margin-bottom: 4px;
+}
+
+.featuredStat p {
+  font-size: 14px;
+  color: var(--secondary-color);
+}
+
+/* ── CTA Section ──────────────────────────────────────────── */
+
+.ctaSection {
+  padding: 60px 0;
+  background: var(--bg-color);
+  text-align: center;
+}
+
+.ctaTitle {
+  font-size: clamp(28px, 4vw, 36px);
+  font-weight: 700;
+  color: var(--primary-color);
+  margin-bottom: 16px;
+}
+
+.ctaDescription {
+  font-size: 16px;
+  color: var(--secondary-color);
+  max-width: 600px;
+  margin: 0 auto 30px;
+  line-height: 1.6;
+}
+
+.ctaButton {
+  padding: 14px 40px;
+  background: var(--btn-color);
+  color: #ffffff;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.ctaButton:hover {
+  background: var(--btn-hover-color);
+  transform: translateY(-2px);
+  box-shadow: 0 10px 30px rgba(76, 175, 79, 0.3);
+}
+
+/* ── Responsive Design ──────────────────────────────────────────── */
+
+@media (max-width: 992px) {
+  .featuredContent {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+
+  .featuredStats {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .heroSection {
+    padding: 60px 0 40px;
+  }
+
+  .testimonialsSection {
+    padding: 40px 0;
+  }
+
+  .testimonialsGrid {
+    grid-template-columns: 1fr;
+    max-width: 500px;
+    margin: 0 auto;
+  }
+
+  .testimonialHeader {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+
+  .rating {
+    text-align: left;
+  }
+
+  .featuredSection {
+    padding: 40px 0;
+  }
+
+  .featuredStats {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .ctaSection {
+    padding: 40px 0;
+  }
+}
+
+@media (max-width: 480px) {
+  .heroSection {
+    padding: 40px 0 30px;
+  }
+
+  .statsGrid {
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+  }
+
+  .testimonialCard {
+    padding: 20px;
+  }
+
+  .clientImage {
+    width: 50px;
+    height: 50px;
+    font-size: 24px;
+  }
+
+  .featuredStats {
+    grid-template-columns: 1fr;
+  }
+
+  .quoteIcon {
+    font-size: 40px;
+  }
+}

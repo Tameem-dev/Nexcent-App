@@ -1,0 +1,252 @@
+/* ── Feature Page ──────────────────────────────────────────── */
+
+.featurePage {
+  width: 100%;
+  overflow-x: hidden;
+  background: var(--bg-color);
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+/* ── Hero Section ──────────────────────────────────────────── */
+
+.heroSection {
+  background: var(--bg-color);
+  padding: 80px 0 60px;
+  text-align: center;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.heroTitle {
+  font-size: clamp(32px, 5vw, 48px);
+  font-weight: 700;
+  color: var(--primary-color);
+  margin-bottom: 16px;
+}
+
+.heroDescription {
+  font-size: clamp(16px, 2vw, 18px);
+  color: var(--secondary-color);
+  max-width: 700px;
+  margin: 0 auto;
+  line-height: 1.6;
+}
+
+/* ── Features Grid ──────────────────────────────────────────── */
+
+.featuresSection {
+  padding: 60px 0;
+  background: var(--bg-color);
+}
+
+.featuresGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+  gap: 30px;
+}
+
+.featureCard {
+  background: #ffffff;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  border-radius: 12px;
+  padding: 30px;
+  display: flex;
+  align-items: flex-start;
+  gap: 20px;
+  transition: all 0.3s ease;
+  box-shadow: var(--box-shadow);
+}
+
+.featureCard:hover {
+  transform: translateY(-5px);
+  border-color: var(--btn-color);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
+}
+
+.featureIcon {
+  font-size: 40px;
+  flex-shrink: 0;
+  width: 60px;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--bg-color);
+  border-radius: 12px;
+}
+
+.featureContent {
+  flex: 1;
+}
+
+.featureTitle {
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--primary-color);
+  margin-bottom: 8px;
+}
+
+.featureDescription {
+  font-size: 14px;
+  color: var(--secondary-color);
+  line-height: 1.6;
+  margin-bottom: 12px;
+}
+
+.featureStatus {
+  display: inline-block;
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.available {
+  background: #e8f5e9;
+  color: var(--btn-color);
+}
+
+.comingSoon {
+  background: #fff3e0;
+  color: #f57c00;
+}
+
+/* ── Stats Section ──────────────────────────────────────────── */
+
+.statsSection {
+  padding: 60px 0;
+  background: #ffffff;
+  border-top: 1px solid rgba(0, 0, 0, 0.05);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.statsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 30px;
+  text-align: center;
+}
+
+.statCard {
+  padding: 20px;
+}
+
+.statNumber {
+  font-size: clamp(32px, 4vw, 42px);
+  font-weight: 700;
+  color: var(--btn-color);
+  margin-bottom: 8px;
+}
+
+.statLabel {
+  font-size: 16px;
+  color: var(--secondary-color);
+}
+
+/* ── CTA Section ──────────────────────────────────────────── */
+
+.ctaSection {
+  padding: 60px 0;
+  background: var(--bg-color);
+  text-align: center;
+}
+
+.ctaTitle {
+  font-size: clamp(28px, 4vw, 36px);
+  font-weight: 700;
+  color: var(--primary-color);
+  margin-bottom: 16px;
+}
+
+.ctaDescription {
+  font-size: 16px;
+  color: var(--secondary-color);
+  max-width: 600px;
+  margin: 0 auto 30px;
+  line-height: 1.6;
+}
+
+.ctaButton {
+  padding: 14px 40px;
+  background: var(--btn-color);
+  color: #ffffff;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.ctaButton:hover {
+  background: var(--btn-hover-color);
+  transform: translateY(-2px);
+  box-shadow: 0 10px 30px rgba(76, 175, 79, 0.3);
+}
+
+/* ── Responsive Design ──────────────────────────────────────────── */
+
+@media (max-width: 768px) {
+  .heroSection {
+    padding: 60px 0 40px;
+  }
+
+  .featuresSection {
+    padding: 40px 0;
+  }
+
+  .featuresGrid {
+    grid-template-columns: 1fr;
+    max-width: 500px;
+    margin: 0 auto;
+  }
+
+  .featureCard {
+    padding: 20px;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .featureIcon {
+    width: 50px;
+    height: 50px;
+    font-size: 30px;
+  }
+
+  .statsSection {
+    padding: 40px 0;
+  }
+
+  .statsGrid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+  }
+
+  .ctaSection {
+    padding: 40px 0;
+  }
+}
+
+@media (max-width: 480px) {
+  .heroSection {
+    padding: 40px 0 30px;
+  }
+
+  .featureCard {
+    padding: 16px;
+  }
+
+  .statsGrid {
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+  }
+
+  .statNumber {
+    font-size: 28px;
+  }
+}

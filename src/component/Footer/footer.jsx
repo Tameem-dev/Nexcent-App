@@ -9,21 +9,7 @@ import youtubeIcon from '../../assets/images/yotube.png';
 
 const Footer = () => {
   return (
-    <footer>
-    
-      <div className={styles.ctaSection}>
-        <div className={styles.container}>
-          <h2 className={styles.ctaTitle}>
-            Pellentesque suscipit <br />
-            fringilla libero eu.
-          </h2>
-          <button className={styles.demoBtn}>
-            Get a Demo →
-          </button>
-        </div>
-      </div>
-
-      
+    <footer>      
       <div className={styles.footerBottomSection}>
         <div className={styles.container}>
           {/* Footer Columns Section */}
