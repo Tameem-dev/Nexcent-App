@@ -1,13 +1,12 @@
-header{
+/* ── Base ── */
+header {
   background-color: var(--bg-color);
-}
-
-.nexcentNav {
-  
-  /* box-shadow: var(--box-shadow); */
   position: sticky;
   top: 0;
   z-index: 1000;
+}
+
+.nexcentNav {
   font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
 }
 
@@ -18,22 +17,24 @@ header{
   display: flex;
   align-items: center;
   justify-content: space-between;
-  flex-wrap: wrap;
 }
 
+/* ── Brand ── */
 .brand {
   display: flex;
   align-items: center;
-  gap: 8px;        /* adjust this — smaller = closer */
+  gap: 8px;
+  text-decoration: none;
+  z-index: 1100;
 }
 
-.logo-image {
+.logoImage {
   width: 32px;
   height: 32px;
   object-fit: contain;
 }
 
-.logo-text {
+.logoText {
   font-size: 24px;
   font-weight: 700;
   background: var(--logo-text);
@@ -42,7 +43,8 @@ header{
   color: transparent;
 }
 
-.nav-links {
+/* ── Desktop nav links ── */
+.navLinks {
   display: flex;
   list-style: none;
   gap: 32px;
@@ -50,27 +52,27 @@ header{
   padding: 0;
 }
 
-.nav-link {
+.navLink {
   text-decoration: none;
   font-size: 16px;
   font-weight: 500;
   color: #4a5568;
-  transition: color 0.3s ease;
+  transition: color 0.2s ease;
   position: relative;
 }
 
-.nav-link:hover {
+.navLink:hover {
   color: var(--btn-color);
 }
 
-.nav-link.active {
+.navLink.active {
   color: var(--btn-color);
 }
 
-.nav-link.active::after {
+.navLink.active::after {
   content: '';
   position: absolute;
-  bottom: -8px;
+  bottom: -6px;
   left: 0;
   width: 100%;
   height: 2px;
@@ -78,75 +80,196 @@ header{
   border-radius: 2px;
 }
 
-.auth-buttons {
+/* ── Auth buttons (shared desktop + drawer) ── */
+.authButtons {
   display: flex;
   gap: 12px;
 }
 
-.btn-login,
-.btn-signup {
+.btnLogin,
+.btnSignup {
   padding: 8px 20px;
   font-size: 14px;
   font-weight: 600;
   border-radius: 6px;
   cursor: pointer;
-  transition: all 0.3s ease;
+  transition: all 0.2s ease;
   font-family: inherit;
   border: none;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
 }
 
-.btn-login {
+.btnLogin {
   background-color: transparent;
   border: 1px solid var(--btn-color);
   color: var(--btn-color);
 }
 
-.btn-login:hover {
-  background-color: rgba(76, 175, 80, 0.1);
+.btnLogin:hover {
+  background-color: rgba(76, 175, 80, 0.08);
 }
 
-.btn-signup {
+.btnSignup {
   background-color: var(--btn-color);
-  color: white;
+  color: #fff;
 }
 
-.btn-signup:hover {
+.btnSignup:hover {
   background-color: var(--btn-hover-color);
   transform: translateY(-1px);
   box-shadow: 0 4px 12px rgba(76, 175, 80, 0.3);
 }
 
-/* Mobile Responsive */
+/* ── Hamburger button — hidden on desktop ── */
+.hamburger {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #4a5568;
+  padding: 4px;
+  border-radius: 6px;
+  transition: background 0.2s;
+  z-index: 1100;
+}
+
+.hamburger:hover {
+  background: rgba(0, 0, 0, 0.05);
+}
+
+/* ── Overlay ── */
+.overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.35);
+  z-index: 1050;
+  opacity: 0;
+  transition: opacity 0.25s ease;
+}
+
+.overlayVisible {
+  display: block;
+  opacity: 1;
+}
+
+/* ── Mobile Drawer ── */
+.drawer {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 280px;
+  max-width: 85vw;
+  height: 100dvh;
+  background: var(--bg-color, #fff);
+  z-index: 1100;
+  display: flex;
+  flex-direction: column;
+  padding: 80px 24px 32px;
+  gap: 32px;
+  transform: translateX(100%);
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: -4px 0 24px rgba(0, 0, 0, 0.1);
+}
+
+.drawerOpen {
+  transform: translateX(0);
+}
+
+/* Close button inside drawer */
+.drawerClose {
+  position: fixed;
+  top: 18px;
+  right: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #4a5568;
+  padding: 6px;
+  border-radius: 6px;
+  transition: background 0.2s, color 0.2s;
+  z-index: 1200;
+}
+
+.drawerClose:hover {
+  background: rgba(0, 0, 0, 0.06);
+  color: #1a202c;
+}
+
+.drawerLinks {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.drawerLink {
+  text-decoration: none;
+  font-size: 16px;
+  font-weight: 500;
+  color: #4a5568;
+  padding: 12px 0;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+  display: block;
+  transition: color 0.2s;
+}
+
+.drawerLink:hover {
+  color: var(--btn-color);
+}
+
+.drawerLinkActive {
+  color: var(--btn-color);
+  font-weight: 600;
+}
+
+.drawerAuth {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: auto;
+}
+
+.drawerAuth .btnLogin,
+.drawerAuth .btnSignup {
+  width: 100%;
+  padding: 12px 20px;
+  font-size: 15px;
+}
+
+/* ── Responsive breakpoints ── */
 @media (max-width: 768px) {
-  .nav-container {
-    flex-direction: column;
-    gap: 16px;
+  .navLinks,
+  .authButtons {
+    display: none;
   }
 
-  .nav-links {
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 20px;
-  }
-
-  .auth-buttons {
-    width: 100%;
-    justify-content: center;
+  .hamburger {
+    display: flex;
   }
 }
 
 @media (max-width: 480px) {
-  .nav-links {
-    gap: 12px;
+  .navContainer {
+    padding: 14px 16px;
   }
 
-  .nav-link {
-    font-size: 14px;
+  .logoText {
+    font-size: 20px;
   }
 
-  .btn-login,
-  .btn-signup {
-    padding: 6px 16px;
-    font-size: 13px;
+  .drawer {
+    width: 100vw;
+    max-width: 100vw;
   }
 }

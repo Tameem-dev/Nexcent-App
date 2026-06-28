@@ -33,6 +33,8 @@ import {
   MdVerified,
   MdStar,
   MdStarBorder,
+  MdMenu,
+  MdClose,
 } from "react-icons/md";
 
 // ── Navigation Data ──
@@ -45,8 +47,8 @@ const navItems = [
 ];
 
 const supportItems = [
-  { icon: <MdRocketLaunch size={16} />, label: "Get Started" },
-  { icon: <MdSettings size={16} />, label: "Settings" },
+  { icon: <MdRocketLaunch size={16} />, label: "Get Started", path: "/getstarted" },
+  { icon: <MdSettings size={16} />, label: "Settings", path: "/settings" },
 ];
 
 // ── People Data ──
@@ -250,8 +252,6 @@ const StarRating = ({ rating }) => {
 
 // ── People Card ──
 const PeopleCard = ({ person, onEdit, onDelete, onView }) => {
-  const [showMenu, setShowMenu] = useState(false);
-
   return (
     <div className={styles.peopleCard}>
       <div className={styles.cardHeader}>
@@ -262,13 +262,13 @@ const PeopleCard = ({ person, onEdit, onDelete, onView }) => {
           <StatusBadge status={person.status} />
         </div>
         <div className={styles.cardActions}>
-          <button className={styles.actionBtn} onClick={() => onView(person)}>
+          <button className={styles.actionBtn} onClick={() => onView(person)} aria-label="View">
             <MdVisibility size={18} />
           </button>
-          <button className={styles.actionBtn} onClick={() => onEdit(person)}>
+          <button className={styles.actionBtn} onClick={() => onEdit(person)} aria-label="Edit">
             <MdEdit size={18} />
           </button>
-          <button className={styles.actionBtn} onClick={() => onDelete(person)}>
+          <button className={styles.actionBtn} onClick={() => onDelete(person)} aria-label="Delete">
             <MdDelete size={18} />
           </button>
         </div>
@@ -341,37 +341,32 @@ const People = () => {
   const [filterRole, setFilterRole] = useState("All");
   const [filterStatus, setFilterStatus] = useState("All");
   const [sortBy, setSortBy] = useState("name");
+  const [sidebarOpen, setSidebarOpen] = useState(false);
 
   const handleLogout = () => {
-    localStorage.removeItem('user');
-    localStorage.removeItem('token');
-    localStorage.removeItem('isLoggedIn');
-    sessionStorage.removeItem('user');
-    sessionStorage.removeItem('token');
-    sessionStorage.removeItem('isLoggedIn');
+    localStorage.clear();
+    sessionStorage.clear();
     navigate('/login');
   };
 
   const handleNavClick = (label, path) => {
     setActiveNav(label);
     navigate(path);
+    setSidebarOpen(false);
   };
 
   const handleEdit = (person) => {
     console.log('Edit:', person);
-    // Implement edit functionality
   };
 
   const handleDelete = (person) => {
     if (window.confirm(`Are you sure you want to delete ${person.name}?`)) {
       console.log('Delete:', person);
-      // Implement delete functionality
     }
   };
 
   const handleView = (person) => {
     console.log('View:', person);
-    // Implement view functionality
   };
 
   const filteredPeople = peopleData
@@ -398,8 +393,15 @@ const People = () => {
   return (
     <div className={styles.layout}>
 
+      {/* Overlay */}
+      {sidebarOpen && <div className={styles.overlay} onClick={() => setSidebarOpen(false)} />}
+
       {/* Sidebar */}
-      <aside className={styles.sidebar}>
+      <aside className={`${styles.sidebar} ${sidebarOpen ? styles.sidebarOpen : ''}`}>
+        <button className={styles.sidebarClose} onClick={() => setSidebarOpen(false)} aria-label="Close sidebar">
+          <MdClose size={20} />
+        </button>
+
         <div className={styles.logo}>
           <img src={TeslaLogo} alt="TESLA" className={styles.logoImage} />
         </div>
@@ -420,7 +422,11 @@ const People = () => {
         <div className={styles.navSupport}>Support</div>
         <nav className={styles.nav}>
           {supportItems.map((item) => (
-            <button key={item.label} className={styles.navItem}>
+            <button 
+              key={item.label} 
+              className={`${styles.navItem} ${activeNav === item.label ? styles.navActive : ""}`}
+              onClick={() => handleNavClick(item.label, item.path)}
+            >
               <span className={styles.navIcon}>{item.icon}</span>
               <span className={styles.navLabel}>{item.label}</span>
             </button>
@@ -441,15 +447,18 @@ const People = () => {
         {/* Header */}
         <div className={styles.header}>
           <div className={styles.headerLeft}>
+            <button className={styles.hamburger} onClick={() => setSidebarOpen(true)} aria-label="Open sidebar">
+              <MdMenu size={22} />
+            </button>
             <h1 className={styles.pageTitle}>People</h1>
             <span className={styles.itemCount}>{filteredPeople.length} members</span>
           </div>
           <div className={styles.headerRight}>
             <button className={styles.addBtn}>
-              <MdAdd size={18} /> Add Member
+              <MdAdd size={18} /> <span className={styles.btnLabel}>Add Member</span>
             </button>
             <button className={styles.downloadBtn}>
-              <MdDownload size={14} /> Export
+              <MdDownload size={14} /> <span className={styles.btnLabel}>Export</span>
             </button>
           </div>
         </div>
@@ -499,12 +508,14 @@ const People = () => {
             <button 
               className={`${styles.viewBtn} ${viewMode === 'grid' ? styles.activeView : ''}`}
               onClick={() => setViewMode('grid')}
+              aria-label="Grid view"
             >
               <MdGridView size={18} />
             </button>
             <button 
               className={`${styles.viewBtn} ${viewMode === 'list' ? styles.activeView : ''}`}
               onClick={() => setViewMode('list')}
+              aria-label="List view"
             >
               <MdViewList size={18} />
             </button>

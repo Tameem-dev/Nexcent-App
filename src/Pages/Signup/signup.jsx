@@ -119,6 +119,20 @@ const Signup = () => {
     if (['fullName', 'email', 'password', 'confirmPassword'].includes(name)) {
       validateField(name, newValue);
     }
+
+    // Clear terms error when checkbox is checked
+    if (name === 'agreeTerms' && checked) {
+      setApiError('');
+    }
+  };
+
+  // ── Validate terms checkbox ──
+  const validateTerms = () => {
+    if (!formData.agreeTerms) {
+      setApiError('Please agree to the Terms of Service and Privacy Policy to continue');
+      return false;
+    }
+    return true;
   };
 
   const handleSubmit = async (e) => {
@@ -129,8 +143,8 @@ const Signup = () => {
     validateField('password', formData.password);
     validateField('confirmPassword', formData.confirmPassword);
 
-    if (!formData.agreeTerms) {
-      setApiError('Please agree to the Terms of Service and Privacy Policy');
+    // ── Check if terms are agreed ──
+    if (!validateTerms()) {
       return;
     }
 
@@ -393,7 +407,7 @@ const Signup = () => {
                 name="agreeTerms"
                 checked={formData.agreeTerms}
                 onChange={handleChange}
-                className={styles.checkbox}
+                className={`${styles.checkbox} ${!formData.agreeTerms && apiError?.includes('Terms') ? styles.checkboxError : ''}`}
                 disabled={loading}
               />
               <span className={styles.checkboxText}>
@@ -405,6 +419,7 @@ const Signup = () => {
                 <Link to="/privacy" className={styles.termsLink}>
                   Privacy Policy
                 </Link>
+                <span className={styles.required}>*</span>
               </span>
             </label>
           </div>

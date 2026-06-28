@@ -3,58 +3,27 @@ import { useNavigate } from 'react-router-dom';
 import styles from './library.module.css';
 import TeslaLogo from '../../../assets/images/TESLA.png';
 import {
-  MdDashboard,
-  MdBarChart,
-  MdLibraryBooks,
-  MdPeople,
-  MdChecklist,
-  MdRocketLaunch,
-  MdSettings,
-  MdDownload,
-  MdSearch,
-  MdAdd,
-  MdDelete,
-  MdEdit,
-  MdVisibility,
-  MdLogout,
-  MdBook,
-  MdBookmark,
-  MdBookmarkBorder,
-  MdStar,
-  MdStarBorder,
-  MdFolder,
-  MdInsertDriveFile,
-  MdDateRange,
-  MdPerson,
-  MdMenuBook,
-  MdAutoStories,
-  MdSchool,
-  MdDescription,
-  MdPictureAsPdf,
-  MdVideoLibrary,
-  MdLink,
-  MdMoreVert,
-  MdFilterList,
-  MdSort,
-  MdGridOn,
-  MdViewList,
+  MdDashboard, MdBarChart, MdLibraryBooks, MdPeople, MdChecklist,
+  MdRocketLaunch, MdSettings, MdDownload, MdSearch, MdAdd, MdLogout,
+  MdBookmark, MdBookmarkBorder, MdStar, MdStarBorder, MdFolder,
+  MdDateRange, MdPerson, MdMenuBook, MdDescription, MdVideoLibrary,
+  MdPictureAsPdf, MdLink, MdMoreVert, MdFilterList, MdGridOn, MdViewList,
+  MdMenu, MdClose,
 } from "react-icons/md";
 
-// ── Navigation Data ──
 const navItems = [
-  { icon: <MdDashboard size={16} />, label: "Dashboard", path: "/dashboard" },
-  { icon: <MdBarChart size={16} />, label: "Reports", path: "/reports" },
-  { icon: <MdLibraryBooks size={16} />, label: "Library", active: true, path: "/library" },
-  { icon: <MdPeople size={16} />, label: "People", path: "/people" },
-  { icon: <MdChecklist size={16} />, label: "Activities", path: "/activities" },
+  { icon: <MdDashboard size={18} />, label: "Dashboard", path: "/dashboard" },
+  { icon: <MdBarChart size={18} />, label: "Reports", path: "/reports" },
+  { icon: <MdLibraryBooks size={18} />, label: "Library", path: "/library" },
+  { icon: <MdPeople size={18} />, label: "People", path: "/people" },
+  { icon: <MdChecklist size={18} />, label: "Activities", path: "/activities" },
 ];
 
 const supportItems = [
-  { icon: <MdRocketLaunch size={16} />, label: "Get Started" },
-  { icon: <MdSettings size={16} />, label: "Settings" },
+  { icon: <MdRocketLaunch size={18} />, label: "Get Started", path: "/getstarted" },
+  { icon: <MdSettings size={18} />, label: "Settings", path: "/settings" },
 ];
 
-// ── Library Data ──
 const categories = [
   { id: 1, name: "All", count: 24, icon: <MdLibraryBooks /> },
   { id: 2, name: "Books", count: 8, icon: <MdMenuBook /> },
@@ -65,196 +34,53 @@ const categories = [
 ];
 
 const libraryItems = [
-  {
-    id: 1,
-    title: "Real Estate Investment Guide 2024",
-    type: "Book",
-    category: "Books",
-    author: "John Smith",
-    date: "2024-01-15",
-    pages: 245,
-    rating: 4.5,
-    description: "Comprehensive guide to real estate investing in the current market.",
-    icon: <MdMenuBook />,
-    color: "#4CAF4F",
-    tags: ["Investing", "Real Estate", "Finance"],
-    status: "Available",
-  },
-  {
-    id: 2,
-    title: "Property Management Best Practices",
-    type: "Document",
-    category: "Documents",
-    author: "Sarah Johnson",
-    date: "2024-02-01",
-    pages: 12,
-    rating: 4.8,
-    description: "Best practices for managing rental properties effectively.",
-    icon: <MdDescription />,
-    color: "#2196f3",
-    tags: ["Management", "Rental", "Property"],
-    status: "Available",
-  },
-  {
-    id: 3,
-    title: "Market Trends Analysis 2024",
-    type: "Article",
-    category: "Articles",
-    author: "Michael Chen",
-    date: "2024-03-10",
-    pages: 8,
-    rating: 4.2,
-    description: "Analysis of current real estate market trends and predictions.",
-    icon: <MdDescription />,
-    color: "#ff9800",
-    tags: ["Market", "Analysis", "Trends"],
-    status: "Available",
-  },
-  {
-    id: 4,
-    title: "Mortgage Calculator Tutorial",
-    type: "Video",
-    category: "Videos",
-    author: "Emily Davis",
-    date: "2024-03-15",
-    duration: "15:30",
-    rating: 4.9,
-    description: "Step-by-step tutorial on using mortgage calculators.",
-    icon: <MdVideoLibrary />,
-    color: "#e91e63",
-    tags: ["Mortgage", "Tutorial", "Finance"],
-    status: "Available",
-  },
-  {
-    id: 5,
-    title: "Legal Aspects of Real Estate",
-    type: "Book",
-    category: "Books",
-    author: "Robert Wilson",
-    date: "2024-02-20",
-    pages: 320,
-    rating: 4.3,
-    description: "Understanding the legal framework of real estate transactions.",
-    icon: <MdMenuBook />,
-    color: "#9c27b0",
-    tags: ["Legal", "Contracts", "Law"],
-    status: "Available",
-  },
-  {
-    id: 6,
-    title: "Commercial Property Valuation",
-    type: "Document",
-    category: "Documents",
-    author: "Lisa Thompson",
-    date: "2024-03-01",
-    pages: 18,
-    rating: 4.6,
-    description: "Methods and techniques for commercial property valuation.",
-    icon: <MdDescription />,
-    color: "#00bcd4",
-    tags: ["Commercial", "Valuation", "Investment"],
-    status: "Available",
-  },
-  {
-    id: 7,
-    title: "Sustainable Building Practices",
-    type: "Article",
-    category: "Articles",
-    author: "David Green",
-    date: "2024-03-20",
-    pages: 6,
-    rating: 4.0,
-    description: "Sustainable and eco-friendly building practices for modern properties.",
-    icon: <MdDescription />,
-    color: "#8bc34a",
-    tags: ["Sustainability", "Green", "Building"],
-    status: "Available",
-  },
-  {
-    id: 8,
-    title: "Real Estate Negotiation Skills",
-    type: "Video",
-    category: "Videos",
-    author: "Amanda Foster",
-    date: "2024-04-01",
-    duration: "22:45",
-    rating: 4.7,
-    description: "Essential negotiation skills for real estate professionals.",
-    icon: <MdVideoLibrary />,
-    color: "#f44336",
-    tags: ["Negotiation", "Skills", "Professional"],
-    status: "Available",
-  },
+  { id: 1, title: "Real Estate Investment Guide 2024", type: "Book", category: "Books", author: "John Smith", date: "2024-01-15", pages: 245, rating: 4.5, description: "Comprehensive guide to real estate investing in the current market.", icon: <MdMenuBook />, color: "#4CAF4F", tags: ["Investing", "Real Estate", "Finance"], status: "Available" },
+  { id: 2, title: "Property Management Best Practices", type: "Document", category: "Documents", author: "Sarah Johnson", date: "2024-02-01", pages: 12, rating: 4.8, description: "Best practices for managing rental properties effectively.", icon: <MdDescription />, color: "#2196f3", tags: ["Management", "Rental", "Property"], status: "Available" },
+  { id: 3, title: "Market Trends Analysis 2024", type: "Article", category: "Articles", author: "Michael Chen", date: "2024-03-10", pages: 8, rating: 4.2, description: "Analysis of current real estate market trends and predictions.", icon: <MdDescription />, color: "#ff9800", tags: ["Market", "Analysis", "Trends"], status: "Available" },
+  { id: 4, title: "Mortgage Calculator Tutorial", type: "Video", category: "Videos", author: "Emily Davis", date: "2024-03-15", duration: "15:30", rating: 4.9, description: "Step-by-step tutorial on using mortgage calculators.", icon: <MdVideoLibrary />, color: "#e91e63", tags: ["Mortgage", "Tutorial", "Finance"], status: "Available" },
+  { id: 5, title: "Legal Aspects of Real Estate", type: "Book", category: "Books", author: "Robert Wilson", date: "2024-02-20", pages: 320, rating: 4.3, description: "Understanding the legal framework of real estate transactions.", icon: <MdMenuBook />, color: "#9c27b0", tags: ["Legal", "Contracts", "Law"], status: "Available" },
+  { id: 6, title: "Commercial Property Valuation", type: "Document", category: "Documents", author: "Lisa Thompson", date: "2024-03-01", pages: 18, rating: 4.6, description: "Methods and techniques for commercial property valuation.", icon: <MdDescription />, color: "#00bcd4", tags: ["Commercial", "Valuation", "Investment"], status: "Available" },
+  { id: 7, title: "Sustainable Building Practices", type: "Article", category: "Articles", author: "David Green", date: "2024-03-20", pages: 6, rating: 4.0, description: "Sustainable and eco-friendly building practices for modern properties.", icon: <MdDescription />, color: "#8bc34a", tags: ["Sustainability", "Green", "Building"], status: "Available" },
+  { id: 8, title: "Real Estate Negotiation Skills", type: "Video", category: "Videos", author: "Amanda Foster", date: "2024-04-01", duration: "22:45", rating: 4.7, description: "Essential negotiation skills for real estate professionals.", icon: <MdVideoLibrary />, color: "#f44336", tags: ["Negotiation", "Skills", "Professional"], status: "Available" },
 ];
 
-// ── Library Item Card ──
 const LibraryCard = ({ item }) => {
   const [isBookmarked, setIsBookmarked] = useState(false);
-  const [showMenu, setShowMenu] = useState(false);
 
   const renderStars = (rating) => {
-    const stars = [];
-    const fullStars = Math.floor(rating);
-    const hasHalfStar = rating % 1 >= 0.5;
-    
-    for (let i = 0; i < 5; i++) {
-      if (i < fullStars) {
-        stars.push(<MdStar key={i} className={styles.starFilled} />);
-      } else if (i === fullStars && hasHalfStar) {
-        stars.push(<MdStar key={i} className={styles.starHalf} />);
-      } else {
-        stars.push(<MdStarBorder key={i} className={styles.starEmpty} />);
-      }
-    }
-    return stars;
+    return Array.from({ length: 5 }, (_, i) => {
+      if (i < Math.floor(rating)) return <MdStar key={i} className={styles.starFilled} />;
+      if (i === Math.floor(rating) && rating % 1 >= 0.5) return <MdStar key={i} className={styles.starHalf} />;
+      return <MdStarBorder key={i} className={styles.starEmpty} />;
+    });
   };
 
   return (
     <div className={styles.libraryCard}>
-      <div className={styles.cardIcon} style={{ backgroundColor: `${item.color}20` }}>
-        <span style={{ color: item.color }}>{item.icon}</span>
+      <div className={styles.cardIcon} style={{ backgroundColor: `${item.color}20`, color: item.color }}>
+        {item.icon}
       </div>
       <div className={styles.cardContent}>
         <div className={styles.cardHeader}>
           <h3 className={styles.cardTitle}>{item.title}</h3>
           <div className={styles.cardActions}>
-            <button 
-              className={styles.bookmarkBtn}
-              onClick={() => setIsBookmarked(!isBookmarked)}
-            >
+            <button className={styles.bookmarkBtn} onClick={() => setIsBookmarked(!isBookmarked)}>
               {isBookmarked ? <MdBookmark /> : <MdBookmarkBorder />}
             </button>
-            <button 
-              className={styles.moreBtn}
-              onClick={() => setShowMenu(!showMenu)}
-            >
-              <MdMoreVert />
-            </button>
+            <button className={styles.moreBtn}><MdMoreVert /></button>
           </div>
         </div>
-        <p className={styles.cardAuthor}>
-          <MdPerson size={14} /> {item.author}
-        </p>
+        <p className={styles.cardAuthor}><MdPerson size={13} /> {item.author}</p>
         <p className={styles.cardDescription}>{item.description}</p>
         <div className={styles.cardMeta}>
-          <span className={styles.cardType}>
-            <MdFolder size={14} /> {item.category}
-          </span>
-          <span className={styles.cardDate}>
-            <MdDateRange size={14} /> {item.date}
-          </span>
-          {item.pages && (
-            <span className={styles.cardPages}>{item.pages} pages</span>
-          )}
-          {item.duration && (
-            <span className={styles.cardDuration}>{item.duration}</span>
-          )}
+          <span><MdFolder size={13} /> {item.category}</span>
+          <span><MdDateRange size={13} /> {item.date}</span>
+          {item.pages && <span>{item.pages}p</span>}
+          {item.duration && <span>{item.duration}</span>}
         </div>
         <div className={styles.cardFooter}>
           <div className={styles.cardTags}>
-            {item.tags.map((tag, index) => (
-              <span key={index} className={styles.tag}>{tag}</span>
-            ))}
+            {item.tags.map((tag, i) => <span key={i} className={styles.tag}>{tag}</span>)}
           </div>
           <div className={styles.cardRating}>
             {renderStars(item.rating)}
@@ -262,16 +88,13 @@ const LibraryCard = ({ item }) => {
           </div>
         </div>
         <div className={styles.cardStatus}>
-          <span className={styles.statusBadge}>
-            {item.status}
-          </span>
+          <span className={styles.statusBadge}>{item.status}</span>
         </div>
       </div>
     </div>
   );
 };
 
-// ── Library ──
 const Library = () => {
   const navigate = useNavigate();
   const [activeNav, setActiveNav] = useState("Library");
@@ -279,26 +102,25 @@ const Library = () => {
   const [selectedCategory, setSelectedCategory] = useState("All");
   const [viewMode, setViewMode] = useState("grid");
   const [sortBy, setSortBy] = useState("recent");
+  const [sidebarOpen, setSidebarOpen] = useState(false);
 
   const handleLogout = () => {
-    localStorage.removeItem('user');
-    localStorage.removeItem('token');
-    localStorage.removeItem('isLoggedIn');
-    sessionStorage.removeItem('user');
-    sessionStorage.removeItem('token');
-    sessionStorage.removeItem('isLoggedIn');
+    localStorage.clear();
+    sessionStorage.clear();
     navigate('/login');
   };
 
   const handleNavClick = (label, path) => {
     setActiveNav(label);
     navigate(path);
+    setSidebarOpen(false);
   };
 
   const filteredItems = libraryItems.filter(item => {
-    const matchesSearch = item.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
-                          item.author.toLowerCase().includes(searchQuery.toLowerCase()) ||
-                          item.description.toLowerCase().includes(searchQuery.toLowerCase());
+    const matchesSearch =
+      item.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      item.author.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      item.description.toLowerCase().includes(searchQuery.toLowerCase());
     const matchesCategory = selectedCategory === "All" || item.category === selectedCategory;
     return matchesSearch && matchesCategory;
   });
@@ -306,16 +128,23 @@ const Library = () => {
   return (
     <div className={styles.layout}>
 
+      {/* Overlay */}
+      {sidebarOpen && <div className={styles.overlay} onClick={() => setSidebarOpen(false)} />}
+
       {/* Sidebar */}
-      <aside className={styles.sidebar}>
+      <aside className={`${styles.sidebar} ${sidebarOpen ? styles.sidebarOpen : ''}`}>
+        <button className={styles.sidebarClose} onClick={() => setSidebarOpen(false)}>
+          <MdClose size={20} />
+        </button>
+
         <div className={styles.logo}>
           <img src={TeslaLogo} alt="TESLA" className={styles.logoImage} />
         </div>
 
         <nav className={styles.nav}>
           {navItems.map((item) => (
-            <button 
-              key={item.label} 
+            <button
+              key={item.label}
               className={`${styles.navItem} ${activeNav === item.label ? styles.navActive : ""}`}
               onClick={() => handleNavClick(item.label, item.path)}
             >
@@ -328,7 +157,11 @@ const Library = () => {
         <div className={styles.navSupport}>Support</div>
         <nav className={styles.nav}>
           {supportItems.map((item) => (
-            <button key={item.label} className={styles.navItem}>
+            <button
+              key={item.label}
+              className={`${styles.navItem} ${activeNav === item.label ? styles.navActive : ""}`}
+              onClick={() => handleNavClick(item.label, item.path)}
+            >
               <span className={styles.navIcon}>{item.icon}</span>
               <span className={styles.navLabel}>{item.label}</span>
             </button>
@@ -349,23 +182,22 @@ const Library = () => {
         {/* Header */}
         <div className={styles.header}>
           <div className={styles.headerLeft}>
+            <button className={styles.hamburger} onClick={() => setSidebarOpen(true)}>
+              <MdMenu size={22} />
+            </button>
             <h1 className={styles.pageTitle}>Library</h1>
             <span className={styles.itemCount}>{filteredItems.length} items</span>
           </div>
           <div className={styles.headerRight}>
-            <button className={styles.addBtn}>
-              <MdAdd size={18} /> Add New
-            </button>
-            <button className={styles.downloadBtn}>
-              <MdDownload size={14} /> Download
-            </button>
+            <button className={styles.addBtn}><MdAdd size={16} /><span className={styles.btnLabel}>Add New</span></button>
+            <button className={styles.downloadBtn}><MdDownload size={16} /><span className={styles.btnLabel}>Download</span></button>
           </div>
         </div>
 
-        {/* Search and Filters */}
+        {/* Search + Filters */}
         <div className={styles.searchBar}>
           <div className={styles.searchWrapper}>
-            <MdSearch className={styles.searchIcon} />
+            <MdSearch className={styles.searchIcon} size={18} />
             <input
               type="text"
               placeholder="Search library..."
@@ -375,26 +207,18 @@ const Library = () => {
             />
           </div>
           <div className={styles.filterActions}>
-            <button className={styles.filterBtn}>
-              <MdFilterList size={18} />
-            </button>
-            <button 
-              className={`${styles.viewBtn} ${viewMode === 'grid' ? styles.activeView : ''}`}
-              onClick={() => setViewMode('grid')}
-            >
+            <button className={styles.filterBtn}><MdFilterList size={18} /></button>
+            <button className={`${styles.viewBtn} ${viewMode === 'grid' ? styles.activeView : ''}`} onClick={() => setViewMode('grid')}>
               <MdGridOn size={18} />
             </button>
-            <button 
-              className={`${styles.viewBtn} ${viewMode === 'list' ? styles.activeView : ''}`}
-              onClick={() => setViewMode('list')}
-            >
+            <button className={`${styles.viewBtn} ${viewMode === 'list' ? styles.activeView : ''}`} onClick={() => setViewMode('list')}>
               <MdViewList size={18} />
             </button>
             <select className={styles.sortSelect} value={sortBy} onChange={(e) => setSortBy(e.target.value)}>
-              <option value="recent">Sort by: Recent</option>
-              <option value="popular">Sort by: Popular</option>
-              <option value="rating">Sort by: Rating</option>
-              <option value="title">Sort by: Title</option>
+              <option value="recent">Recent</option>
+              <option value="popular">Popular</option>
+              <option value="rating">Rating</option>
+              <option value="title">Title</option>
             </select>
           </div>
         </div>
@@ -408,17 +232,15 @@ const Library = () => {
               onClick={() => setSelectedCategory(cat.name)}
             >
               <span className={styles.categoryIcon}>{cat.icon}</span>
-              {cat.name}
+              <span className={styles.categoryName}>{cat.name}</span>
               <span className={styles.categoryCount}>{cat.count}</span>
             </button>
           ))}
         </div>
 
-        {/* Library Grid */}
+        {/* Grid */}
         <div className={`${styles.libraryGrid} ${viewMode === 'list' ? styles.listView : ''}`}>
-          {filteredItems.map((item) => (
-            <LibraryCard key={item.id} item={item} />
-          ))}
+          {filteredItems.map((item) => <LibraryCard key={item.id} item={item} />)}
         </div>
 
         {filteredItems.length === 0 && (

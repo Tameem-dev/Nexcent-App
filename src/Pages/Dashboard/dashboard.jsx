@@ -15,20 +15,21 @@ import {
   MdArrowDropUp,
   MdArrowDropDown,
   MdLogout,
+  MdMenu,
+  MdClose,
 } from "react-icons/md";
 
-// ── Data ──
 const navItems = [
-  { icon: <MdDashboard size={16} />, label: "Dashboard", path: "/dashboard" },
-  { icon: <MdBarChart size={16} />, label: "Reports", path: "/reports" },
-  { icon: <MdLibraryBooks size={16} />, label: "Library", path: "/library" },
-  { icon: <MdPeople size={16} />, label: "People", path: "/people" },
-  { icon: <MdChecklist size={16} />, label: "Activities", path: "/activities" },
+  { icon: <MdDashboard size={18} />, label: "Dashboard", path: "/dashboard" },
+  { icon: <MdBarChart size={18} />, label: "Reports", path: "/reports" },
+  { icon: <MdLibraryBooks size={18} />, label: "Library", path: "/library" },
+  { icon: <MdPeople size={18} />, label: "People", path: "/people" },
+  { icon: <MdChecklist size={18} />, label: "Activities", path: "/activities" },
 ];
 
 const supportItems = [
-  { icon: <MdRocketLaunch size={16} />, label: "Get Started", path: "/getstarted" },
-  { icon: <MdSettings size={16} />, label: "Settings", path: "/settings" },
+  { icon: <MdRocketLaunch size={18} />, label: "Get Started", path: "/getstarted" },
+  { icon: <MdSettings size={18} />, label: "Settings", path: "/settings" },
 ];
 
 const topStats = [
@@ -44,18 +45,12 @@ const knowledgeStats = [
 ];
 
 const chartData = [
-  { month: "JAN", value: 60 },
-  { month: "FEB", value: 80 },
-  { month: "MAR", value: 100 },
-  { month: "APR", value: 120 },
-  { month: "MAY", value: 90 },
-  { month: "JUN", value: 110 },
-  { month: "JUL", value: 150 },
-  { month: "AUG", value: 200 },
-  { month: "SEP", value: 230 },
-  { month: "OCT", value: 270 },
-  { month: "NOV", value: 310 },
-  { month: "DEC", value: 340 },
+  { month: "JAN", value: 60 }, { month: "FEB", value: 80 },
+  { month: "MAR", value: 100 }, { month: "APR", value: 120 },
+  { month: "MAY", value: 90 }, { month: "JUN", value: 110 },
+  { month: "JUL", value: 150 }, { month: "AUG", value: 200 },
+  { month: "SEP", value: 230 }, { month: "OCT", value: 270 },
+  { month: "NOV", value: 310 }, { month: "DEC", value: 340 },
 ];
 
 const MAX_CHART = 400;
@@ -83,7 +78,6 @@ const groupLeaderboard = [
   { name: "Test Group", sub: "52 Points / User · 85% Correct", rank: 2, up: false },
 ];
 
-// ── Sparkline ──
 const Sparkline = ({ positive }) => {
   const color = positive === false ? "#ef4444" : "#3b82f6";
   const d = positive === false
@@ -96,7 +90,6 @@ const Sparkline = ({ positive }) => {
   );
 };
 
-// ── Topic Row ──
 const TopicRow = ({ label, pct, color }) => (
   <div className={styles.topicRow}>
     <div className={styles.topicThumb} />
@@ -106,11 +99,10 @@ const TopicRow = ({ label, pct, color }) => (
         <div className={styles.progressBar} style={{ width: `${pct}%`, backgroundColor: color }} />
       </div>
     </div>
-    <span className={styles.topicPct}>{pct}% Correct</span>
+    <span className={styles.topicPct}>{pct}%</span>
   </div>
 );
 
-// ── Leader Row ──
 const LeaderRow = ({ name, sub, rank, up, color }) => (
   <div className={styles.leaderRow}>
     <div className={styles.avatar} style={{ backgroundColor: color || "#e2e8f0" }}>
@@ -129,42 +121,49 @@ const LeaderRow = ({ name, sub, rank, up, color }) => (
   </div>
 );
 
-// ── Dashboard ──
 const Dashboard = () => {
   const navigate = useNavigate();
   const [timeframe, setTimeframe] = useState("All-time");
   const [people, setPeople] = useState("All");
   const [topic, setTopic] = useState("All");
   const [activeNav, setActiveNav] = useState("Dashboard");
+  const [sidebarOpen, setSidebarOpen] = useState(false);
 
   const handleLogout = () => {
-    localStorage.removeItem('user');
-    localStorage.removeItem('token');
-    localStorage.removeItem('isLoggedIn');
-    sessionStorage.removeItem('user');
-    sessionStorage.removeItem('token');
-    sessionStorage.removeItem('isLoggedIn');
+    localStorage.clear();
+    sessionStorage.clear();
     navigate('/login');
   };
 
   const handleNavClick = (label, path) => {
     setActiveNav(label);
     navigate(path);
+    setSidebarOpen(false); // close drawer on mobile after nav
   };
 
   return (
     <div className={styles.layout}>
 
+      {/* Mobile overlay */}
+      {sidebarOpen && (
+        <div className={styles.overlay} onClick={() => setSidebarOpen(false)} />
+      )}
+
       {/* Sidebar */}
-      <aside className={styles.sidebar}>
+      <aside className={`${styles.sidebar} ${sidebarOpen ? styles.sidebarOpen : ''}`}>
+        {/* Close btn — mobile only */}
+        <button className={styles.sidebarClose} onClick={() => setSidebarOpen(false)}>
+          <MdClose size={20} />
+        </button>
+
         <div className={styles.logo}>
           <img src={TeslaLogo} alt="TESLA" className={styles.logoImage} />
         </div>
 
         <nav className={styles.nav}>
           {navItems.map((item) => (
-            <button 
-              key={item.label} 
+            <button
+              key={item.label}
               className={`${styles.navItem} ${activeNav === item.label ? styles.navActive : ""}`}
               onClick={() => handleNavClick(item.label, item.path)}
             >
@@ -177,10 +176,10 @@ const Dashboard = () => {
         <div className={styles.navSupport}>Support</div>
         <nav className={styles.nav}>
           {supportItems.map((item) => (
-            <button 
-              key={item.label} 
+            <button
+              key={item.label}
               className={`${styles.navItem} ${activeNav === item.label ? styles.navActive : ""}`}
-              onClick={() => handleNavClick(item.label, item.path)}  // ✅ FIXED: Added onClick
+              onClick={() => handleNavClick(item.label, item.path)}
             >
               <span className={styles.navIcon}>{item.icon}</span>
               <span className={styles.navLabel}>{item.label}</span>
@@ -199,13 +198,19 @@ const Dashboard = () => {
       {/* Main */}
       <main className={styles.main}>
 
+        {/* Header */}
         <div className={styles.header}>
+          {/* Hamburger — mobile only */}
+          <button className={styles.hamburger} onClick={() => setSidebarOpen(true)}>
+            <MdMenu size={22} />
+          </button>
           <h1 className={styles.pageTitle}>Dashboard</h1>
           <button className={styles.downloadBtn}>
-            <MdDownload size={14} /> Download
+            <MdDownload size={14} /> <span className={styles.downloadLabel}>Download</span>
           </button>
         </div>
 
+        {/* Filters */}
         <div className={styles.filters}>
           <select className={styles.filterSelect} value={timeframe} onChange={e => setTimeframe(e.target.value)}>
             <option value="All-time">Timeframe: All-time</option>
@@ -223,6 +228,7 @@ const Dashboard = () => {
           </select>
         </div>
 
+        {/* Stats + Chart */}
         <div className={styles.topRow}>
           <div className={styles.statsCol}>
             <div className={styles.statGroup}>
@@ -236,7 +242,6 @@ const Dashboard = () => {
                 </div>
               ))}
             </div>
-
             <div className={styles.statGroup}>
               {knowledgeStats.map((s) => (
                 <div key={s.label} className={styles.statCard}>
@@ -261,22 +266,17 @@ const Dashboard = () => {
                 <option>Week</option>
               </select>
             </div>
-
             <div className={styles.chartBody}>
               <div className={styles.yAxis}>
                 {Y_LABELS.map((y) => (
                   <span key={y} className={styles.yLabel}>{y}</span>
                 ))}
               </div>
-
               <div className={styles.chart}>
                 {chartData.map((d) => (
                   <div key={d.month} className={styles.barCol}>
                     <div className={styles.barWrapper}>
-                      <div
-                        className={styles.bar}
-                        style={{ height: `${(d.value / MAX_CHART) * 100}%` }}
-                      />
+                      <div className={styles.bar} style={{ height: `${(d.value / MAX_CHART) * 100}%` }} />
                     </div>
                     <span className={styles.barLabel}>{d.month}</span>
                   </div>
@@ -286,6 +286,7 @@ const Dashboard = () => {
           </div>
         </div>
 
+        {/* Topics */}
         <div className={styles.twoCol}>
           <div className={styles.card}>
             <h3 className={styles.cardTitle}>Weakest Topics</h3>
@@ -297,6 +298,7 @@ const Dashboard = () => {
           </div>
         </div>
 
+        {/* Leaderboards */}
         <div className={styles.twoCol}>
           <div className={styles.card}>
             <h3 className={styles.cardTitle}>User Leaderboard</h3>

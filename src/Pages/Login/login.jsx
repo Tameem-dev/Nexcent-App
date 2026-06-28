@@ -69,6 +69,15 @@ const Login = () => {
     }));
   };
 
+  // ── Validate remember me checkbox ──
+  const validateRememberMe = () => {
+    if (!formData.rememberMe) {
+      setApiError('Please check the "Remember me" box to continue');
+      return false;
+    }
+    return true;
+  };
+
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
     const newValue = type === 'checkbox' ? checked : value;
@@ -84,6 +93,11 @@ const Login = () => {
     if (name === 'email' || name === 'password') {
       validateField(name, newValue);
     }
+    
+    // Clear remember me error when checkbox is checked
+    if (name === 'rememberMe' && checked) {
+      setApiError('');
+    }
   };
 
   const handleSubmit = async (e) => {
@@ -91,6 +105,11 @@ const Login = () => {
     
     validateField('email', formData.email);
     validateField('password', formData.password);
+    
+    // ── Check if remember me is checked ──
+    if (!validateRememberMe()) {
+      return;
+    }
     
     if (errors.email || errors.password || !formData.email || !formData.password) {
       setApiError('Please fix all errors before submitting');
@@ -124,15 +143,11 @@ const Login = () => {
           loginTime: new Date().toISOString()
         };
         
-        if (formData.rememberMe) {
-          localStorage.setItem('user', JSON.stringify(userData));
-          localStorage.setItem('token', response.token);
-          localStorage.setItem('isLoggedIn', 'true');
-        } else {
-          sessionStorage.setItem('user', JSON.stringify(userData));
-          sessionStorage.setItem('token', response.token);
-          sessionStorage.setItem('isLoggedIn', 'true');
-        }
+        // Since rememberMe is required, we always store in localStorage
+        // This ensures the user stays logged in even after browser close
+        localStorage.setItem('user', JSON.stringify(userData));
+        localStorage.setItem('token', response.token);
+        localStorage.setItem('isLoggedIn', 'true');
         
         setSuccessMessage('Login successful! Redirecting to dashboard...');
         
@@ -184,7 +199,6 @@ const Login = () => {
               message: 'Incorrect password. Please try again.'
             });
           } else {
-            // This shouldn't happen because we already checked above, but just in case
             resolve({
               success: false,
               message: 'Please sign up first to create an account.'
@@ -293,7 +307,7 @@ const Login = () => {
                 name="rememberMe"
                 checked={formData.rememberMe}
                 onChange={handleChange}
-                className={styles.checkbox}
+                className={`${styles.checkbox} ${!formData.rememberMe && apiError?.includes('Remember me') ? styles.checkboxError : ''}`}
                 disabled={loading}
               />
               <span className={styles.checkboxText}>Remember me</span>

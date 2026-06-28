@@ -31,21 +31,23 @@ import {
   MdTimer,
   MdEmojiEvents,
   MdInsights,
+  MdMenu,
+  MdClose,
 } from "react-icons/md";
 import { FiActivity } from 'react-icons/fi';
 
 // ── Navigation Data ──
 const navItems = [
-  { icon: <MdDashboard size={16} />, label: "Dashboard", path: "/dashboard" },
-  { icon: <MdBarChart size={16} />, label: "Reports", path: "/reports" },
-  { icon: <MdLibraryBooks size={16} />, label: "Library", path: "/library" },
-  { icon: <MdPeople size={16} />, label: "People", path: "/people" },
-  { icon: <MdChecklist size={16} />, label: "Activities", path: "/activities" },
+  { icon: <MdDashboard size={18} />, label: "Dashboard", path: "/dashboard" },
+  { icon: <MdBarChart size={18} />, label: "Reports", path: "/reports" },
+  { icon: <MdLibraryBooks size={18} />, label: "Library", path: "/library" },
+  { icon: <MdPeople size={18} />, label: "People", path: "/people" },
+  { icon: <MdChecklist size={18} />, label: "Activities", path: "/activities" },
 ];
 
 const supportItems = [
-  { icon: <MdRocketLaunch size={16} />, label: "Get Started", active: true, path: "/getstarted" },
-  { icon: <MdSettings size={16} />, label: "Settings", path: "/settings" },
+  { icon: <MdRocketLaunch size={18} />, label: "Get Started", active: true, path: "/getstarted" },
+  { icon: <MdSettings size={18} />, label: "Settings", path: "/settings" },
 ];
 
 // ── Steps Data ──
@@ -182,20 +184,18 @@ const GetStarted = () => {
   const navigate = useNavigate();
   const [activeNav, setActiveNav] = useState("Get Started");
   const [completedSteps, setCompletedSteps] = useState([1]);
+  const [sidebarOpen, setSidebarOpen] = useState(false);
 
   const handleLogout = () => {
-    localStorage.removeItem('user');
-    localStorage.removeItem('token');
-    localStorage.removeItem('isLoggedIn');
-    sessionStorage.removeItem('user');
-    sessionStorage.removeItem('token');
-    sessionStorage.removeItem('isLoggedIn');
+    localStorage.clear();
+    sessionStorage.clear();
     navigate('/login');
   };
 
   const handleNavClick = (label, path) => {
     setActiveNav(label);
     navigate(path);
+    setSidebarOpen(false);
   };
 
   const handleStepClick = (step) => {
@@ -203,6 +203,7 @@ const GetStarted = () => {
       setCompletedSteps([...completedSteps, step.id]);
     }
     navigate(step.link);
+    setSidebarOpen(false);
   };
 
   const progressPercentage = Math.round((completedSteps.length / steps.length) * 100);
@@ -210,8 +211,15 @@ const GetStarted = () => {
   return (
     <div className={styles.layout}>
 
+      {/* Overlay */}
+      {sidebarOpen && <div className={styles.overlay} onClick={() => setSidebarOpen(false)} />}
+
       {/* Sidebar */}
-      <aside className={styles.sidebar}>
+      <aside className={`${styles.sidebar} ${sidebarOpen ? styles.sidebarOpen : ''}`}>
+        <button className={styles.sidebarClose} onClick={() => setSidebarOpen(false)}>
+          <MdClose size={20} />
+        </button>
+
         <div className={styles.logo}>
           <img src={TeslaLogo} alt="TESLA" className={styles.logoImage} />
         </div>
@@ -257,6 +265,9 @@ const GetStarted = () => {
         {/* Header */}
         <div className={styles.header}>
           <div className={styles.headerLeft}>
+            <button className={styles.hamburger} onClick={() => setSidebarOpen(true)}>
+              <MdMenu size={22} />
+            </button>
             <h1 className={styles.pageTitle}>Get Started</h1>
             <span className={styles.progressBadge}>{progressPercentage}% Complete</span>
           </div>

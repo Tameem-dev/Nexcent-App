@@ -14,39 +14,36 @@
   align-items: center;
   justify-content: space-between;
   gap: 60px;
-  flex-wrap: wrap;
 }
 
-/* Left Side - Text Content */
+/* ── Left: Text ── */
 .businessText {
   flex: 1;
-  min-width: 280px;
 }
 
 .businessTitle {
-  font-size: 36px;
+  font-size: clamp(24px, 3vw, 36px);
   font-weight: 700;
-  color: #1a2b4c;
-  line-height: 1.2;
+  color: var(--secondary-color, #1a2b4c);
+  line-height: 1.25;
   margin-bottom: 16px;
 }
 
 .businessSubtitle {
-  font-size: 16px;
-  color: #666666;
-  line-height: 1.5;
+  font-size: clamp(13px, 1.4vw, 16px);
+  color: var(--least-color, #666666);
+  line-height: 1.6;
 }
 
-/* Right Side - Stats */
+/* ── Right: Stats ── */
 .businessStats {
   flex: 1;
-  min-width: 280px;
 }
 
 .statsGrid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: 32px;
+  gap: 36px 24px;
 }
 
 .statItem {
@@ -55,10 +52,10 @@
   gap: 16px;
 }
 
-/* Stat Images */
 .statImage {
-  width: 48px;
-  height: 48px;
+  width: 52px;
+  height: 52px;
+  flex-shrink: 0;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -70,27 +67,42 @@
   object-fit: contain;
 }
 
-/* Stat Info */
 .statInfo {
   flex: 1;
 }
 
 .statNumber {
-  font-size: 28px;
+  font-size: clamp(20px, 2.2vw, 28px);
   font-weight: 700;
-  color: #1a2b4c;
+  color: var(--secondary-color, #1a2b4c);
   margin-bottom: 4px;
+  line-height: 1.1;
 }
 
 .statLabel {
-  font-size: 14px;
-  color: #666666;
+  font-size: clamp(12px, 1.1vw, 14px);
+  color: var(--least-color, #666666);
 }
 
-/* Responsive Design */
+/* ── 992px ── */
+@media (max-width: 992px) {
+  .businessSection {
+    padding: 60px 24px;
+  }
+
+  .businessWrapper {
+    gap: 40px;
+  }
+
+  .statsGrid {
+    gap: 28px 20px;
+  }
+}
+
+/* ── 768px: stack vertically ── */
 @media (max-width: 768px) {
   .businessSection {
-    padding: 50px 16px;
+    padding: 50px 20px;
   }
 
   .businessWrapper {
@@ -99,40 +111,60 @@
     gap: 40px;
   }
 
-  .businessTitle {
-    font-size: 28px;
+  .businessText {
+    width: 100%;
   }
 
-  .businessSubtitle {
-    font-size: 14px;
+  .businessTitle br {
+    display: none;
+  }
+
+  .businessStats {
+    width: 100%;
   }
 
   .statsGrid {
-    grid-template-columns: 1fr;
-    gap: 24px;
-  }
-
-  .statItem {
-    justify-content: center;
-  }
-
-  .statNumber {
-    font-size: 24px;
-  }
-}
-
-@media (max-width: 480px) {
-  .businessTitle {
-    font-size: 24px;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 28px 32px;
+    max-width: 480px;
+    margin: 0 auto;
   }
 
   .statItem {
     flex-direction: column;
+    align-items: center;
     text-align: center;
-    gap: 8px;
+    gap: 10px;
   }
 
   .statImage {
-    margin: 0 auto;
+    width: 44px;
+    height: 44px;
+  }
+}
+
+/* ── 480px ── */
+@media (max-width: 480px) {
+  .businessSection {
+    padding: 40px 16px;
+  }
+
+  .statsGrid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px 16px;
+    max-width: 100%;
+  }
+
+  .statImage {
+    width: 38px;
+    height: 38px;
+  }
+}
+
+/* ── 360px ── */
+@media (max-width: 360px) {
+  .statsGrid {
+    grid-template-columns: 1fr;
+    max-width: 200px;
   }
 }

@@ -36,21 +36,23 @@ import {
   MdDevices,
   MdDarkMode,
   MdLightMode,
+  MdMenu,
+  MdClose,
 } from "react-icons/md";
 import { FiActivity } from 'react-icons/fi';
 
 // ── Navigation Data ──
 const navItems = [
-  { icon: <MdDashboard size={16} />, label: "Dashboard", path: "/dashboard" },
-  { icon: <MdBarChart size={16} />, label: "Reports", path: "/reports" },
-  { icon: <MdLibraryBooks size={16} />, label: "Library", path: "/library" },
-  { icon: <MdPeople size={16} />, label: "People", path: "/people" },
-  { icon: <MdChecklist size={16} />, label: "Activities", path: "/activities" },
+  { icon: <MdDashboard size={18} />, label: "Dashboard", path: "/dashboard" },
+  { icon: <MdBarChart size={18} />, label: "Reports", path: "/reports" },
+  { icon: <MdLibraryBooks size={18} />, label: "Library", path: "/library" },
+  { icon: <MdPeople size={18} />, label: "People", path: "/people" },
+  { icon: <MdChecklist size={18} />, label: "Activities", path: "/activities" },
 ];
 
 const supportItems = [
-  { icon: <MdRocketLaunch size={16} />, label: "Get Started", path: "/getstarted" },
-  { icon: <MdSettings size={16} />, label: "Settings", active: true, path: "/settings" },
+  { icon: <MdRocketLaunch size={18} />, label: "Get Started", path: "/getstarted" },
+  { icon: <MdSettings size={18} />, label: "Settings", active: true, path: "/settings" },
 ];
 
 // ── Settings Data ──
@@ -86,6 +88,7 @@ const Settings = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [saveSuccess, setSaveSuccess] = useState(false);
   const [userData, setUserData] = useState(null);
+  const [sidebarOpen, setSidebarOpen] = useState(false);
 
   // ── Load User Data from localStorage/sessionStorage ──
   useEffect(() => {
@@ -138,18 +141,15 @@ const Settings = () => {
   });
 
   const handleLogout = () => {
-    localStorage.removeItem('user');
-    localStorage.removeItem('token');
-    localStorage.removeItem('isLoggedIn');
-    sessionStorage.removeItem('user');
-    sessionStorage.removeItem('token');
-    sessionStorage.removeItem('isLoggedIn');
+    localStorage.clear();
+    sessionStorage.clear();
     navigate('/login');
   };
 
   const handleNavClick = (label, path) => {
     setActiveNav(label);
     navigate(path);
+    setSidebarOpen(false);
   };
 
   const handleProfileChange = (e) => {
@@ -221,8 +221,15 @@ const Settings = () => {
   return (
     <div className={styles.layout}>
 
+      {/* Overlay */}
+      {sidebarOpen && <div className={styles.overlay} onClick={() => setSidebarOpen(false)} />}
+
       {/* Sidebar */}
-      <aside className={styles.sidebar}>
+      <aside className={`${styles.sidebar} ${sidebarOpen ? styles.sidebarOpen : ''}`}>
+        <button className={styles.sidebarClose} onClick={() => setSidebarOpen(false)}>
+          <MdClose size={20} />
+        </button>
+
         <div className={styles.logo}>
           <img src={TeslaLogo} alt="TESLA" className={styles.logoImage} />
         </div>
@@ -268,6 +275,9 @@ const Settings = () => {
         {/* Header */}
         <div className={styles.header}>
           <div className={styles.headerLeft}>
+            <button className={styles.hamburger} onClick={() => setSidebarOpen(true)}>
+              <MdMenu size={22} />
+            </button>
             <h1 className={styles.pageTitle}>Settings</h1>
             <span className={styles.headerSubtitle}>Manage your account preferences</span>
           </div>
@@ -278,7 +288,7 @@ const Settings = () => {
               </span>
             )}
             <button className={styles.saveBtn} onClick={handleSave}>
-              <MdSave size={16} /> Save Changes
+              <MdSave size={16} /> <span className={styles.btnLabel}>Save Changes</span>
             </button>
           </div>
         </div>
@@ -292,7 +302,7 @@ const Settings = () => {
               onClick={() => setActiveTab(tab.id)}
             >
               <span className={styles.tabIcon}>{tab.icon}</span>
-              {tab.label}
+              <span className={styles.tabLabel}>{tab.label}</span>
             </button>
           ))}
         </div>
@@ -310,10 +320,10 @@ const Settings = () => {
                   </div>
                   <div className={styles.avatarActions}>
                     <button className={styles.uploadBtn}>
-                      <MdUpload /> Change Photo
+                      <MdUpload /> <span className={styles.btnLabel}>Change Photo</span>
                     </button>
                     <button className={styles.removeBtn}>
-                      <MdDelete /> Remove
+                      <MdDelete /> <span className={styles.btnLabel}>Remove</span>
                     </button>
                   </div>
                 </div>

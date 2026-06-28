@@ -35,21 +35,23 @@ import {
   MdTrendingDown,
   MdStar,
   MdStarBorder,
+  MdMenu,
+  MdClose,
 } from "react-icons/md";
 import { FiActivity } from 'react-icons/fi';
 
 // ── Navigation Data ──
 const navItems = [
-  { icon: <MdDashboard size={16} />, label: "Dashboard", path: "/dashboard" },
-  { icon: <MdBarChart size={16} />, label: "Reports", path: "/reports" },
-  { icon: <MdLibraryBooks size={16} />, label: "Library", path: "/library" },
-  { icon: <MdPeople size={16} />, label: "People", path: "/people" },
-  { icon: <MdChecklist size={16} />, label: "Activities", active: true, path: "/activities" },
+  { icon: <MdDashboard size={18} />, label: "Dashboard", path: "/dashboard" },
+  { icon: <MdBarChart size={18} />, label: "Reports", path: "/reports" },
+  { icon: <MdLibraryBooks size={18} />, label: "Library", path: "/library" },
+  { icon: <MdPeople size={18} />, label: "People", path: "/people" },
+  { icon: <MdChecklist size={18} />, label: "Activities", active: true, path: "/activities" },
 ];
 
 const supportItems = [
-  { icon: <MdRocketLaunch size={16} />, label: "Get Started" },
-  { icon: <MdSettings size={16} />, label: "Settings" },
+  { icon: <MdRocketLaunch size={18} />, label: "Get Started", path: "/getstarted" },
+  { icon: <MdSettings size={18} />, label: "Settings", path: "/settings" },
 ];
 
 // ── Activities Data ──
@@ -356,20 +358,18 @@ const Activities = () => {
   const [filterType, setFilterType] = useState("All");
   const [sortBy, setSortBy] = useState("recent");
   const [viewMode, setViewMode] = useState("list");
+  const [sidebarOpen, setSidebarOpen] = useState(false);
 
   const handleLogout = () => {
-    localStorage.removeItem('user');
-    localStorage.removeItem('token');
-    localStorage.removeItem('isLoggedIn');
-    sessionStorage.removeItem('user');
-    sessionStorage.removeItem('token');
-    sessionStorage.removeItem('isLoggedIn');
+    localStorage.clear();
+    sessionStorage.clear();
     navigate('/login');
   };
 
   const handleNavClick = (label, path) => {
     setActiveNav(label);
     navigate(path);
+    setSidebarOpen(false);
   };
 
   const getStatusCount = (status) => {
@@ -404,8 +404,15 @@ const Activities = () => {
   return (
     <div className={styles.layout}>
 
+      {/* Overlay */}
+      {sidebarOpen && <div className={styles.overlay} onClick={() => setSidebarOpen(false)} />}
+
       {/* Sidebar */}
-      <aside className={styles.sidebar}>
+      <aside className={`${styles.sidebar} ${sidebarOpen ? styles.sidebarOpen : ''}`}>
+        <button className={styles.sidebarClose} onClick={() => setSidebarOpen(false)}>
+          <MdClose size={20} />
+        </button>
+
         <div className={styles.logo}>
           <img src={TeslaLogo} alt="TESLA" className={styles.logoImage} />
         </div>
@@ -426,7 +433,11 @@ const Activities = () => {
         <div className={styles.navSupport}>Support</div>
         <nav className={styles.nav}>
           {supportItems.map((item) => (
-            <button key={item.label} className={styles.navItem}>
+            <button 
+              key={item.label} 
+              className={`${styles.navItem} ${activeNav === item.label ? styles.navActive : ""}`}
+              onClick={() => handleNavClick(item.label, item.path)}
+            >
               <span className={styles.navIcon}>{item.icon}</span>
               <span className={styles.navLabel}>{item.label}</span>
             </button>
@@ -447,15 +458,18 @@ const Activities = () => {
         {/* Header */}
         <div className={styles.header}>
           <div className={styles.headerLeft}>
+            <button className={styles.hamburger} onClick={() => setSidebarOpen(true)}>
+              <MdMenu size={22} />
+            </button>
             <h1 className={styles.pageTitle}>Activities</h1>
             <span className={styles.itemCount}>{filteredActivities.length} activities</span>
           </div>
           <div className={styles.headerRight}>
             <button className={styles.refreshBtn}>
-              <MdRefresh size={16} /> Refresh
+              <MdRefresh size={16} /> <span className={styles.btnLabel}>Refresh</span>
             </button>
             <button className={styles.downloadBtn}>
-              <MdDownload size={14} /> Export
+              <MdDownload size={14} /> <span className={styles.btnLabel}>Export</span>
             </button>
           </div>
         </div>

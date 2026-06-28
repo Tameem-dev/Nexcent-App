@@ -6,6 +6,7 @@ const Insight = () => {
   return (
     <section className={styles['insight-section']}>
       <div className={`container ${styles['insight-container']}`}>
+
         <div className={styles['left-insight']}>
           <h2 className={styles['insight-title']}>
             Lessons and insights{' '}
@@ -18,13 +19,18 @@ const Insight = () => {
         </div>
 
         <div className={styles['right']}>
-          <img src={insightImage} alt="Insight Illustration" className={styles['insight-image']} />
+          <img
+            src={insightImage}
+            alt="Insight Illustration"
+            className={styles['insight-image']}
+          />
         </div>
 
-        <img src={dot} alt="Dot" className={styles['dot-image']} />
+        <img src={dot} alt="" aria-hidden="true" className={styles['dot-image']} />
+
       </div>
     </section>
-  )
-}
+  );
+};
 
 export default Insight;
