@@ -36,7 +36,20 @@
 
 .sidebarClose {
   display: none;
+  align-self: flex-end;
+  align-items: center;
+  justify-content: center;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #64748b;
+  padding: 4px;
+  margin-bottom: 8px;
+  border-radius: 6px;
+  transition: background 0.15s;
 }
+
+.sidebarClose:hover { background: #f1f5f9; color: #0f172a; }
 
 .logo {
   display: flex;
@@ -99,7 +112,7 @@
   padding: 14px 10px 4px;
 }
 
-/* ── Logout ── */
+/* ── Logout — always visible (desktop + mobile drawer) ── */
 .logoutContainer {
   margin-top: auto;
   padding-top: 16px;
@@ -598,20 +611,14 @@
 
   .sidebarClose {
     display: flex;
-    align-self: flex-end;
-    align-items: center;
-    justify-content: center;
-    background: none;
-    border: none;
-    cursor: pointer;
-    color: #64748b;
-    padding: 4px;
-    margin-bottom: 8px;
-    border-radius: 6px;
-    transition: background 0.15s;
   }
 
-  .sidebarClose:hover { background: #f1f5f9; color: #0f172a; }
+  /* ✅ Logout stays visible inside the mobile drawer */
+  .logoutContainer {
+    display: flex !important;
+    flex-direction: column;
+    margin-top: auto;
+  }
 
   .hamburger { display: flex; }
 
@@ -641,8 +648,6 @@
     flex: 1;
     min-width: 0;
   }
-
-  .logoutContainer { display: none; }
 }
 
 /* 600px */
